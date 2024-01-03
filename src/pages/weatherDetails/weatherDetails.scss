@@ -1,0 +1,58 @@
+.weatherDetails{
+    display: flex;
+}
+
+.placeDetails{
+    font-size: 30px;
+}
+
+.shadow-lg{
+    --bs-box-shadow-lg:0 1rem 3rem #00000059;
+}
+
+.forecastCard{
+    width: 12.5%;
+    min-height: 280px;
+}
+
+.redColor{
+    color: red;
+}
+
+.greenColor{
+    color: green;
+}
+
+.blueColor{
+    color: #0D6EFD;
+}
+
+@media only screen and (max-width: 1200px) {
+    .forecastCard{
+        width: 16.6%;
+    }
+}
+
+@media only screen and (max-width: 1010px) {
+    .weatherDetails{
+        display: block;
+    }
+}
+
+@media only screen and (max-width: 950px) {
+    .forecastCard{
+        width: 25%;
+    }
+}
+
+@media only screen and (max-width: 650px) {
+    .forecastCard{
+        width: 33.3%;
+    }
+}
+
+@media only screen and (max-width: 450px) {
+    .forecastCard{
+        width: 50%;
+    }
+}

@@ -6,6 +6,8 @@ import WeatherDetails from "./pages/weatherDetails/weatherDetails"
 function App() {
     const [pageNo, setPageNo] = useState(1)
     const [weatherDetails, setWeatherDetails] = useState()
+    const [darkTheme, setdarktheme] = useState(false)
+    const [iconColor, setIconColor] = useState('')
 
     function searchInput(data) {
         if (data !== 'error') {
@@ -16,8 +18,10 @@ function App() {
 
     return (
         <>
-            <Header searchInput={searchInput} />
-            {pageNo === 1 ? <Home /> : <WeatherDetails weatherDetails={weatherDetails} />}
+            <div className={`${darkTheme && 'bodyDarkTheme'} body`}>
+                <Header searchInput={searchInput} setdarktheme={setdarktheme} darkTheme={darkTheme} setIconColor={setIconColor} />
+                {pageNo === 1 ? <Home /> : <WeatherDetails weatherDetails={weatherDetails} darkTheme={darkTheme} iconColor={iconColor} />}
+            </div>
         </>
     )
 }

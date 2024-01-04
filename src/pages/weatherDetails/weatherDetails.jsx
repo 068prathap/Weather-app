@@ -41,8 +41,21 @@ function WeatherDetails({ weatherDetails, darkTheme, iconColor }) {
                     method: "GET",
                     url: `https://api.openweathermap.org/data/2.5/forecast?q=${weatherDetails.name}&appid=10a251fd2b2db596384a2cd822ae016d&units=metric`,
                 })
-                console.log(res);
-                setforecastList(res.data.list)
+                console.log(res.data.list);
+
+                const list = res.data.list
+                const newList = list.filter((obj, index) => {
+                    let date = obj.dt_txt.split(' ').join('T')
+                    const then = new Date(date);
+                    const now = new Date();
+                    const msBetweenDates = (then.getTime() - now.getTime());
+                    const hoursBetweenDates = msBetweenDates / (60 * 60 * 1000);
+                    if (hoursBetweenDates < 24 && hoursBetweenDates > 0) {
+                        return obj
+                    }
+                })
+
+                setforecastList(newList)
             } catch (err) {
                 console.log("error", err)
             }
@@ -58,11 +71,11 @@ function WeatherDetails({ weatherDetails, darkTheme, iconColor }) {
                             <i className={`bi bi-geo-alt ${iconColor}`}></i>
                             <p className='ps-2'>{weatherDetails.name} / {weatherDetails.sys.country}</p>
                         </div>
-                        <div className='d-flex fs-6 ps-1'>
+                        <div className='d-flex fs-6 ps-2'>
                             <i className={`bi bi-calendar3 ${iconColor}`}></i>
                             <p className='ps-2'>{dayList[new Date().getDay()]}, {new Date().getDate()} {monthList[new Date().getMonth()]} {new Date().getFullYear()}</p>
                         </div>
-                        <div className='d-flex mt-4 ps-1'>
+                        <div className='d-flex mt-4 ps-2'>
                             <div>
                                 <p className='fs-1 fw-bold'>{weatherDetails.main.temp}</p>
                                 <p className='fs-5'>Feels Like: {weatherDetails.main.feels_like}</p>
@@ -96,13 +109,11 @@ function WeatherDetails({ weatherDetails, darkTheme, iconColor }) {
                 <div className='d-flex flex-wrap justify-content-center'>
                     {
                         forecastList.map((details, index) => {
-                            if (index < 8) {
-                                return (
-                                    <div className='forecastCard p-2' key={index}>
-                                        <ForecastCard details={details} darkTheme={darkTheme} iconColor={iconColor} />
-                                    </div>
-                                )
-                            }
+                            return (
+                                <div className='forecastCard p-2' key={index}>
+                                    <ForecastCard details={details} darkTheme={darkTheme} iconColor={iconColor} />
+                                </div>
+                            )
                         })
                     }
                 </div>

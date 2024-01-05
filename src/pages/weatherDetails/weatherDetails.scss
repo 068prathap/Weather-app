@@ -1,70 +1,80 @@
-.weatherDetails{
+.weatherDetails {
     display: flex;
 }
 
-.subMainDiv{
+.subMainDiv {
     display: flex;
     width: 100%;
+    justify-content: center;
 }
 
-.shadow-lg{
-    --bs-box-shadow-lg:0 1rem 3rem #00000059;
+.shadow-lg {
+    --bs-box-shadow-lg: 0 1rem 3rem #00000059;
 }
 
-.mapOuter{
-    max-width: 400px;
-    width: 100%;
+.mapOuter {
+    width: 50%;
 }
 
-.forecastCard{
+.windProperty {
+    width: 50%;
+}
+
+.forecastCard {
     width: 12.5%;
     min-height: 280px;
 }
 
-.redColor{
+.redColor {
     color: red;
 }
 
-.greenColor{
+.greenColor {
     color: green;
 }
 
-.blueColor{
+.blueColor {
     color: #0D6EFD;
 }
 
-@media only screen and (max-width: 1300px){
-    .weatherDetails{
+@media only screen and (max-width: 1300px) {
+    .weatherDetails {
         display: block;
     }
 }
 
 @media only screen and (max-width: 1200px) {
-    .forecastCard{
+    .forecastCard {
         width: 16.6%;
     }
 }
 
-@media only screen and (max-width: 1010px) {
-    .weatherDetails{
-        display: block;
-    }
-}
-
 @media only screen and (max-width: 950px) {
-    .forecastCard{
+    .forecastCard {
         width: 25%;
     }
 }
 
 @media only screen and (max-width: 650px) {
-    .forecastCard{
+    .forecastCard {
         width: 33.3%;
+    }
+
+    .subMainDiv {
+        display: block;
+    }
+
+    .mapOuter {
+        width: 100%;
+    }
+
+    .windProperty {
+        width: 100%;
     }
 }
 
 @media only screen and (max-width: 450px) {
-    .forecastCard{
+    .forecastCard {
         width: 50%;
     }
 }

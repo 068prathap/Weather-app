@@ -90,16 +90,16 @@ function WeatherDetails({ weatherDetails, darkTheme, iconColor }) {
                     </div>
                     <div className='w-100 d-flex justify-content-center mt-4'>
                         <div className='text-center'>
-                            <img src={HazeImg} className='shadow-lg bg-body rounded-circle' alt="" width={'195px'} />
+                            <img src={HazeImg} className='shadow-lg bg-body rounded-circle' alt="" width={'225px'} />
                             <p className='mt-4 fw-bold fs-2'>{weatherDetails.weather[0].main}</p>
                         </div>
                     </div>
                 </div>
                 <div className='subMainDiv'>
-                    <div className='d-flex justify-content-center mapOuter'>
+                    <div className='d-flex justify-content-center mapOuter mt-4'>
                         <MapShow lon={weatherDetails.coord.lon} lat={weatherDetails.coord.lat} />
                     </div>
-                    <div className='w-100 d-flex justify-content-center mt-4'>
+                    <div className='d-flex justify-content-center mt-4 windProperty'>
                         <div className='fs-3 gap-1 d-flex flex-column'>
                             <p><i className={`bi bi-sunrise pe-3 ${iconColor}`}></i> Sunrise: {sunrise} AM</p>
                             <p><i className={`bi bi-sunset pe-3 ${iconColor}`}></i> Sunset: {sunset} PM</p>

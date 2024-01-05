@@ -68,7 +68,7 @@ function Header({ searchInput, setdarktheme, darkTheme, setIconColor }) {
                             <h5 className='fw-normal m-0 timeHeading'>{hours < 12 ? 'Good Morning' : hours < 18 ? 'Good Afternoon' : 'Good Evening'}, {fullTime}</h5 >
                         </div>
                         <div className={`border-bottom d-flex align-items-center mb-4 ${error && 'border-danger'}`}>
-                            <Form.Control type="text" className={`border-0 placeInput ${darkTheme && 'colorWhite'} ${error && 'text-danger'}`} value={place} placeholder="Search for location" onChange={(e)=>{setPlace(e.target.value); setError(false)}} onKeyDown={(e)=>{e.code==='Enter' && searchLocation(place)}} />
+                            <Form.Control type="text" className={`border-0 placeInput ${darkTheme && 'colorWhite'} ${error && 'text-danger'}`} value={place} placeholder="Search for location" onChange={(e)=>{setPlace(e.target.value); setError(false)}} onKeyDown={(e)=>{e.keyCode===13 && searchLocation(place)}} />
                             <i className="bi bi-search pe-2 placeSearchIcon" onClick={() => { searchLocation(place) }}></i>
                         </div>
                     </div>

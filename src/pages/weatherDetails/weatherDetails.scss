@@ -2,12 +2,18 @@
     display: flex;
 }
 
-.placeDetails{
-    font-size: 30px;
+.subMainDiv{
+    display: flex;
+    width: 100%;
 }
 
 .shadow-lg{
     --bs-box-shadow-lg:0 1rem 3rem #00000059;
+}
+
+.mapOuter{
+    max-width: 400px;
+    width: 100%;
 }
 
 .forecastCard{
@@ -25,6 +31,12 @@
 
 .blueColor{
     color: #0D6EFD;
+}
+
+@media only screen and (max-width: 1300px){
+    .weatherDetails{
+        display: block;
+    }
 }
 
 @media only screen and (max-width: 1200px) {

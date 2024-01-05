@@ -4,6 +4,7 @@ import HazeImg from '../../assets/hazeImg.png'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import ForecastCard from '../../component/forecastCard/forecastCard';
+import MapShow from '../../component/map/map';
 
 function WeatherDetails({ weatherDetails, darkTheme, iconColor }) {
     const dayList = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
@@ -65,42 +66,48 @@ function WeatherDetails({ weatherDetails, darkTheme, iconColor }) {
     return (
         <>
             <div className='weatherDetails'>
-                <div className='w-100 d-flex justify-content-center mt-4'>
-                    <div className='gap-4 d-flex flex-column'>
-                        <div className='d-flex fs-2'>
-                            <i className={`bi bi-geo-alt ${iconColor}`}></i>
-                            <p className='ps-2'>{weatherDetails.name} / {weatherDetails.sys.country}</p>
-                        </div>
-                        <div className='d-flex fs-6 ps-2'>
-                            <i className={`bi bi-calendar3 ${iconColor}`}></i>
-                            <p className='ps-2'>{dayList[new Date().getDay()]}, {new Date().getDate()} {monthList[new Date().getMonth()]} {new Date().getFullYear()}</p>
-                        </div>
-                        <div className='d-flex mt-4 ps-2'>
-                            <div>
-                                <p className='fs-1 fw-bold'>{weatherDetails.main.temp}</p>
-                                <p className='fs-5'>Feels Like: {weatherDetails.main.feels_like}</p>
+                <div className='subMainDiv'>
+                    <div className='w-100 d-flex justify-content-center mt-4'>
+                        <div className='gap-4 d-flex flex-column'>
+                            <div className='d-flex fs-2'>
+                                <i className={`bi bi-geo-alt ${iconColor}`}></i>
+                                <p className='ps-2'>{weatherDetails.name} / {weatherDetails.sys.country}</p>
                             </div>
-                            <div className='ps-3'>
-                                <img src={TempImg} alt="" width={'100px'} />
+                            <div className='d-flex fs-6 ps-2'>
+                                <i className={`bi bi-calendar3 ${iconColor}`}></i>
+                                <p className='ps-2'>{dayList[new Date().getDay()]}, {new Date().getDate()} {monthList[new Date().getMonth()]} {new Date().getFullYear()}</p>
+                            </div>
+                            <div className='d-flex mt-4 ps-2'>
+                                <div>
+                                    <p className='fs-1 fw-bold'>{weatherDetails.main.temp}</p>
+                                    <p className='fs-5'>Feels Like: {weatherDetails.main.feels_like}</p>
+                                </div>
+                                <div className='ps-3'>
+                                    <img src={TempImg} alt="" width={'100px'} />
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <div className='w-100 d-flex justify-content-center mt-4'>
-                    <div className='text-center'>
-                        {/* <div></div> */}
-                        <img src={HazeImg} className='shadow-lg bg-body rounded-circle' alt="" width={'195px'} />
-                        <p className='mt-4 fw-bold fs-2'>{weatherDetails.weather[0].main}</p>
+                    <div className='w-100 d-flex justify-content-center mt-4'>
+                        <div className='text-center'>
+                            <img src={HazeImg} className='shadow-lg bg-body rounded-circle' alt="" width={'195px'} />
+                            <p className='mt-4 fw-bold fs-2'>{weatherDetails.weather[0].main}</p>
+                        </div>
                     </div>
                 </div>
-                <div className='w-100 d-flex justify-content-center mt-4'>
-                    <div className='fs-3 gap-1 d-flex flex-column'>
-                        <p><i className={`bi bi-sunrise pe-3 ${iconColor}`}></i> Sunrise: {sunrise} AM</p>
-                        <p><i className={`bi bi-sunset pe-3 ${iconColor}`}></i> Sunset: {sunset} PM</p>
-                        <p><i className={`bi bi-moisture pe-3 ${iconColor}`}></i> Humidity: {weatherDetails.main.humidity}%</p>
-                        <p><i className={`bi bi-wind pe-3 ${iconColor}`}></i> Wind Speed: {weatherDetails.wind.speed}k/hr</p>
-                        <p><i className={`bi bi-arrow-bar-up pe-3 ${iconColor}`}></i> Pressure: {weatherDetails.main.pressure}mb</p>
-                        <p><i className={`bi bi-compass pe-3 ${iconColor}`}></i> Direction: {directions[index][0]} {directions[index][1]}</p>
+                <div className='subMainDiv'>
+                    <div className='d-flex justify-content-center mapOuter'>
+                        <MapShow lon={weatherDetails.coord.lon} lat={weatherDetails.coord.lat} />
+                    </div>
+                    <div className='w-100 d-flex justify-content-center mt-4'>
+                        <div className='fs-3 gap-1 d-flex flex-column'>
+                            <p><i className={`bi bi-sunrise pe-3 ${iconColor}`}></i> Sunrise: {sunrise} AM</p>
+                            <p><i className={`bi bi-sunset pe-3 ${iconColor}`}></i> Sunset: {sunset} PM</p>
+                            <p><i className={`bi bi-moisture pe-3 ${iconColor}`}></i> Humidity: {weatherDetails.main.humidity}%</p>
+                            <p><i className={`bi bi-wind pe-3 ${iconColor}`}></i> Wind Speed: {weatherDetails.wind.speed}k/hr</p>
+                            <p><i className={`bi bi-arrow-bar-up pe-3 ${iconColor}`}></i> Pressure: {weatherDetails.main.pressure}mb</p>
+                            <p><i className={`bi bi-compass pe-3 ${iconColor}`}></i> Direction: {directions[index % 8][0]} {directions[index % 8][1]}</p>
+                        </div>
                     </div>
                 </div>
             </div>
